@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
-from rest_framework import viewsets, generics
+from rest_framework import generics
 from .models import Product
 from .serializers import ProductSerializer
 
