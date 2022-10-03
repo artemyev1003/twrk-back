@@ -6,15 +6,6 @@ from .models import Product
 from .serializers import ProductSerializer
 
 
-# class ProductViewSet(viewsets.ModelViewSet):
-#     serializer_class = ProductSerializer
-#     queryset = Product.objects.all()
-#     lookup_field = 'sku'
-#
-#     filter_backends = [DjangoFilterBackend, SearchFilter]
-#     filterset_fields = ['status']
-#     search_fields = ['sku', 'title']
-
 class ProductListAPIView(generics.ListAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
