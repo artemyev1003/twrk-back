@@ -8,7 +8,7 @@ class ImageSerializer(serializers.Serializer):
 
     def get_path(self, obj):
         if obj:
-            return obj.url.split('.')[0]
+            return obj.url.rsplit('.', 1)[0]
         return None
 
     def get_formats(self, obj):

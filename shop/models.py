@@ -30,11 +30,15 @@ class Product(models.Model):
                                  on_delete=models.PROTECT, related_name='products')
 
     def convert_to_webp(self):
-        f_name = self.image.name.split('.')
+        f_name = self.image.name.rsplit('.', 1)
         # Check if the image has .jpg/.png extension
         # and if it already exists it the media directory
         if f_name[-1] in ['jpg', 'png'] \
-                and not os.path.exists(os.path.join(settings.MEDIA_ROOT, self.image.name)):
+                and not os.path.exists(os.path.join(settings.MEDIA_ROOT, 'images', self.image.name)):
+
+            if not os.path.exists(os.path.join(settings.MEDIA_ROOT, 'images')):
+                os.makedirs(os.path.join(settings.MEDIA_ROOT, 'images'))
+
             img = Image.open(self.image)
             webp_file_name = f'{f_name[0]}.webp'
             image_path = os.path.join(settings.MEDIA_ROOT, 'images', webp_file_name)
